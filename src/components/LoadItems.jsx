@@ -10,7 +10,8 @@ const LoadItems = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:3000/todos")
+    const apiUrl = process.env.REACT_APP_API_URL;
+    fetch(`${apiUrl}/todos`)
       .then((res) => res.json())
       .then((items) => {
         const newItems = items.map(todoItemToClientModel);

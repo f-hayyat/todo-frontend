@@ -2,14 +2,14 @@ import { TodoItemsContext } from "../store/TodoItemsContext";
 import Button from "./Button";
 import { useContext, useState } from "react";
 import { todoItemToClientModel } from "../utils/ModelUtil";
-
+import React from "react";
 const TodoItem = ({ id, todoText, todoDate, completed }) => {
   const { deleteTodoItem } = useContext(TodoItemsContext);
   const [isCompleted, setIsCompleted] = useState(completed);
 
   const deleteHandler = () => {
-    console.log("deleting item", id);
-    fetch(`http://localhost:3000/todos/${id}`, {
+    const apiUrl = process.env.REACT_APP_API_URL;
+    fetch(`${apiUrl}/todos/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -25,7 +25,9 @@ const TodoItem = ({ id, todoText, todoDate, completed }) => {
 
   const toggleCompletionHandler = async (e) => {
     try {
-      const response = await fetch(`http://localhost:3000/todos/${id}`, {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      
+      const response = await fetch(`${apiUrl}/todos/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

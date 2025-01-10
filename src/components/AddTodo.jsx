@@ -4,6 +4,7 @@ import Button from "./Button";
 import { useRef, useContext } from "react";
 
 
+
 const AddTodo = () => {
   const todoTextInput = useRef();
   const todoDateInput = useRef();
@@ -23,7 +24,8 @@ const AddTodo = () => {
     todoDateInput.current.value = "";
 
     try {
-      const response = await fetch("http://localhost:3000/todos", {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/todos`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
