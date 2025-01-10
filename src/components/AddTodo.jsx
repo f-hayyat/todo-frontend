@@ -24,7 +24,7 @@ const AddTodo = () => {
     todoDateInput.current.value = "";
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
+      const apiUrl = process.env.VITE_API_URL;
       const response = await fetch(`${apiUrl}/todos`, {
         method: "POST",
         headers: {

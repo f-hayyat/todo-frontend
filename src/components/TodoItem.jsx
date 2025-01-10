@@ -8,7 +8,7 @@ const TodoItem = ({ id, todoText, todoDate, completed }) => {
   const [isCompleted, setIsCompleted] = useState(completed);
 
   const deleteHandler = () => {
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = process.env.VITE_API_URL;
     fetch(`${apiUrl}/todos/${id}`, {
       method: "DELETE",
     })
@@ -25,7 +25,7 @@ const TodoItem = ({ id, todoText, todoDate, completed }) => {
 
   const toggleCompletionHandler = async (e) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
+      const apiUrl = process.env.VITE_API_URL;
       
       const response = await fetch(`${apiUrl}/todos/${id}`, {
         method: "PATCH",

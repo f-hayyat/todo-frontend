@@ -10,7 +10,7 @@ const LoadItems = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    const apiUrl = process.env.REACT_APP_API_URL;
+    const apiUrl = process.env.VITE_API_URL;
     fetch(`${apiUrl}/todos`)
       .then((res) => res.json())
       .then((items) => {
