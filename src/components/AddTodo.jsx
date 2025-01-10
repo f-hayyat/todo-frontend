@@ -3,8 +3,6 @@ import { todoItemToClientModel } from "../utils/ModelUtil";
 import Button from "./Button";
 import { useRef, useContext } from "react";
 
-
-
 const AddTodo = () => {
   const todoTextInput = useRef();
   const todoDateInput = useRef();
@@ -24,7 +22,7 @@ const AddTodo = () => {
     todoDateInput.current.value = "";
 
     try {
-      const apiUrl = process.env.VITE_API_URL;
+      const apiUrl = import.meta.env.VITE_API_URL;
       const response = await fetch(`${apiUrl}/todos`, {
         method: "POST",
         headers: {
@@ -41,7 +39,11 @@ const AddTodo = () => {
       }
 
       const serverItem = await response.json();
-      const { id, todoText: text, todoDate: date } = todoItemToClientModel(serverItem);
+      const {
+        id,
+        todoText: text,
+        todoDate: date,
+      } = todoItemToClientModel(serverItem);
       addTodoItem(id, text, date);
     } catch (error) {
       console.error("Error adding todo:", error);
